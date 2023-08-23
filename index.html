@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Orbit Simulation</title>
+</head>
+
+<body>
+  
+  <div class="stars"></div>
+  <div class="orbit">
+    <div class="sun" id="sun"></div>
+    <div class="planet" id="planet"></div>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="sizeSlider" min="0" max="4" value="0" step="1">
+    <label for="sizeSlider">Size: <p id="currentSize" style="display: inline;"></p></label>
+    <datalist id="sizeList">
+      <option value="0">Main-Series Star</option>
+      <option value="1">Red Giant</option>
+      <option value="2">Nebula Star</option>
+      <option value="3">White Dwarf</option>
+      <option value="4">Black Dwarf</option>
+    </datalist>
+  </div>
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    
+    for (let i = 0; i < 100; i++) { // Adjust the number of stars as needed
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      starsContainer.appendChild(star);
+    }
+
+    const sun = document.getElementById('sun');
+    const planet = document.getElementById('planet');
+    const sizeSlider = document.getElementById('sizeSlider');
+
+    function mapSliderValueToSize(value) {
+      const sizeValues = [50, 325, 33, 33, 33]; // Values corresponding to the slider points
+      return sizeValues[value];
+    }
+
+    const starTypeNames = ["Main-Series Star", "Red Giant", "Nebula Star", "White Dwarf", "Black Dwarf"];
+
+    sizeSlider.addEventListener('input', () => {
+      const sliderValue = parseInt(sizeSlider.value);
+      const newSize = mapSliderValueToSize(sliderValue);
+      updateSunStyle(sliderValue); // Call the function to update sun style
+      sun.style.width = `${newSize}px`;
+      sun.style.height = `${newSize}px`;
+      document.getElementById("currentSize").innerHTML = starTypeNames[sliderValue];
+      updateVisibility(sliderValue);
+    });
+
+    function updateSunStyle(sliderValue) {
+      // Remove previous style classes
+      sun.classList.remove('redgiant', 'nebula', 'whitedwarf', 'blackdwarf');
+      
+      // Add style class based on slider value
+      if (sliderValue === 1) {
+        sun.classList.add('redgiant');
+      } else if (sliderValue === 2) {
+        sun.classList.add('nebula');
+      } else if (sliderValue === 3) {
+        sun.classList.add('whitedwarf');
+      } else if (sliderValue === 4) {
+        sun.classList.add('blackdwarf');
+      }
+    }
+
+    function updateVisibility(sliderValue) {
+      // Hide the planet and orbit for specific sun sizes
+      if (sliderValue >= 1) {
+        planet.style.display = 'none';
+      } else {
+        planet.style.display = 'block';
+      }
+    }
+
+   
+  </script>
+</body>
+</html>

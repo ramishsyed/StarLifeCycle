@@ -1,0 +1,204 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #0a192f;
+  }
+  
+  .orbit {
+    width: 300px;
+    height: 300px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 10s linear infinite;
+  }
+  
+  .sun {
+    width: 50px;
+    height: 50px;
+    background-color: #ffdd00;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .planet {
+    width: 20px;
+    height: 20px;
+    background-color: #3498db;
+    border-radius: 50%;
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    transform: translateX(-50%);
+    animation: orbit 10s linear infinite;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .stars::before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+    opacity: 0.1; /* Adjust the opacity as needed */
+    animation: twinkling 5s infinite;
+  }
+
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    opacity: 0.5; /* Adjust the opacity as needed */
+    animation: twinkling 3s infinite alternate;
+  }
+
+ /* Update the CSS for the slider container and slider */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  #sizeSlider {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Custom styles for the slider and its labels */
+  #sizeSlider {
+    background: transparent; /* Remove default slider styling */
+  }
+  
+  #sizeSlider::-webkit-slider-runnable-track {
+    background: transparent; /* Remove default track styling */
+  }
+  
+  #sizeSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+  
+  /* Styling for the label */
+  label {
+    color: white;
+    margin-right: 10px;
+  }
+  
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes orbit {
+    0% {
+      transform: translateX(-50%) translateY(10%) rotate(0deg);
+    }
+    100% {
+      transform: translateX(-50%) translateY(10%) rotate(360deg);
+    }
+  }
+
+  @keyframes twinkling {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 0.1;
+    }
+    50% {
+      transform: translateY(-100vh);
+      opacity: 1;
+    }
+  }
+
+  @keyframes twinkling {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  #sun {
+    background-color: yellow;
+    box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
+  }
+  
+  #sun.redgiant {
+    background-color: red;
+    box-shadow: 0 0 70px rgba(255, 0, 0, 0.8);
+  }
+  
+  #sun.nebula {
+    background-color: purple;
+    border: 10px solid white;
+    filter: blur(10px);
+    box-shadow: 0 0 70px 100px rgba(72, 73, 168, 0.8);
+  }
+  
+  #sun.whitedwarf {
+    background-color: white;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  
+  #sun.blackdwarf {
+    background-color: black;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .header {
+    background-color: #333; /* Adjust the background color */
+    padding: 10px 0;
+  }
+  
+  .divider {
+    background-color: #ccc; /* Adjust the background color of the divider */
+    padding: 10px 0; /* Adjust the padding as needed */
+    text-align: center; /* Center the content horizontally */
+    border-bottom: 1px solid #999; /* Add a border at the bottom of the divider */
+  }
+  
+  .link-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Adjust the button color */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .link-button:hover {
+    background-color: #0056b3; /* Adjust the button color on hover */
+  }
